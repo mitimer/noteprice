@@ -69,9 +69,10 @@
     <Build Include="dbo\Tables\Price.sql" />
     <Build Include="dbo\Tables\GoodsType.sql" />
     <Build Include="dbo\Tables\Goods.sql" />
-    <Build Include="dbo\Views\vwStoreInfo.sql" />
     <None Include="PostDeployment\Populate\001_StoreSet.sql" />
     <None Include="PostDeployment\Populate\002_Store.sql" />
+    <Build Include="dbo\Views\vwStoreStoreSet.sql" />
+    <Build Include="dbo\Views\vwPriceStore.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
