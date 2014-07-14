@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="noteprice.DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="GoodsTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="GoodsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="SotreId" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="4" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="GoodsTypeId" Type="int" />
+          <Property Name="GoodsId" Type="int" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="400" />
+          <Property Name="StoreSetId" Type="int" />
+        </EntityType>
+        <EntityType Name="StoreSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="SortId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'noteprice.Db.dbo.vwPriceStore' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwPriceStore">
+          <Key>
+            <PropertyRef Name="PriceId" />
+            <PropertyRef Name="PriceText" />
+          </Key>
+          <Property Name="PriceId" Type="int" Nullable="false" />
+          <Property Name="PriceText" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="300" />
+          <Property Name="StroeLocation" Type="nvarchar" MaxLength="400" />
+          <Property Name="StoreSetId" Type="int" />
+          <Property Name="StoreSetName" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwStoreStoreSet">
+          <Key>
+            <PropertyRef Name="StoreId" />
+            <PropertyRef Name="StoreName" />
+          </Key>
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="StoreLocation" Type="nvarchar" MaxLength="400" />
+          <Property Name="StoreSetId" Type="int" />
+          <Property Name="StoreSetName" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK_Goods_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="GoodsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="0..1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="GoodsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="SotreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_StoreSet">
+          <End Role="StoreSet" Type="Self.StoreSet" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="StoreSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="notepriceDbModelStoreContainer">
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsType" EntityType="Self.GoodsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreSet" EntityType="Self.StoreSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwPriceStore" EntityType="Self.vwPriceStore" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwPriceStore].[PriceId] AS [PriceId], 
+    [vwPriceStore].[PriceText] AS [PriceText], 
+    [vwPriceStore].[StoreId] AS [StoreId], 
+    [vwPriceStore].[StoreName] AS [StoreName], 
+    [vwPriceStore].[StroeLocation] AS [StroeLocation], 
+    [vwPriceStore].[StoreSetId] AS [StoreSetId], 
+    [vwPriceStore].[StoreSetName] AS [StoreSetName]
+    FROM [dbo].[vwPriceStore] AS [vwPriceStore]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwStoreStoreSet" EntityType="Self.vwStoreStoreSet" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwStoreStoreSet].[StoreId] AS [StoreId], 
+    [vwStoreStoreSet].[StoreName] AS [StoreName], 
+    [vwStoreStoreSet].[StoreLocation] AS [StoreLocation], 
+    [vwStoreStoreSet].[StoreSetId] AS [StoreSetId], 
+    [vwStoreStoreSet].[StoreSetName] AS [StoreSetName]
+    FROM [dbo].[vwStoreStoreSet] AS [vwStoreStoreSet]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Goods_GoodsType" Association="Self.FK_Goods_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsType" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_Goods" Association="Self.FK_Price_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_GoodsType" Association="Self.FK_Price_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsType" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_Store" Association="Self.FK_Price_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_StoreSet" Association="Self.FK_Store_StoreSet">
+            <End Role="StoreSet" EntitySet="StoreSet" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Good">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsTypeId" Type="Int32" />
+          <NavigationProperty Name="GoodsType" Relationship="Self.FK_Goods_GoodsType" FromRole="Goods" ToRole="GoodsType" />
+          <NavigationProperty Name="Prices" Relationship="Self.FK_Price_Goods" FromRole="Goods" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="GoodsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_GoodsType" FromRole="GoodsType" ToRole="Goods" />
+          <NavigationProperty Name="Prices" Relationship="Self.FK_Price_GoodsType" FromRole="GoodsType" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="SotreId" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="GoodsTypeId" Type="Int32" />
+          <Property Name="GoodsId" Type="Int32" />
+          <NavigationProperty Name="Good" Relationship="Self.FK_Price_Goods" FromRole="Price" ToRole="Goods" />
+          <NavigationProperty Name="GoodsType" Relationship="Self.FK_Price_GoodsType" FromRole="Price" ToRole="GoodsType" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Price_Store" FromRole="Price" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="StoreSetId" Type="Int32" />
+          <NavigationProperty Name="Prices" Relationship="Self.FK_Price_Store" FromRole="Store" ToRole="Price" />
+          <NavigationProperty Name="StoreSet" Relationship="Self.FK_Store_StoreSet" FromRole="Store" ToRole="StoreSet" />
+        </EntityType>
+        <EntityType Name="StoreSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SortId" Type="Int32" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK_Store_StoreSet" FromRole="StoreSet" ToRole="Store" />
+        </EntityType>
+        <Association Name="FK_Goods_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="GoodsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_Goods">
+          <End Role="Goods" Type="Self.Good" Multiplicity="0..1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="0..1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="GoodsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="SotreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_StoreSet">
+          <End Role="StoreSet" Type="Self.StoreSet" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="StoreSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MainDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Goods" EntityType="Self.Good" />
+          <EntitySet Name="GoodsTypes" EntityType="Self.GoodsType" />
+          <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="Stores" EntityType="Self.Store" />
+          <EntitySet Name="StoreSets" EntityType="Self.StoreSet" />
+          <AssociationSet Name="FK_Goods_GoodsType" Association="Self.FK_Goods_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsTypes" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_Goods" Association="Self.FK_Price_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_GoodsType" Association="Self.FK_Price_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsTypes" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_Store" Association="Self.FK_Price_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_StoreSet" Association="Self.FK_Store_StoreSet">
+            <End Role="StoreSet" EntitySet="StoreSets" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <EntitySet Name="vwPriceStores" EntityType="Model.vwPriceStore" />
+          <EntitySet Name="vwStoreStoreSets" EntityType="Model.vwStoreStoreSet" />
+        </EntityContainer>
+        <EntityType Name="vwPriceStore">
+          <Key>
+            <PropertyRef Name="PriceId" />
+            <PropertyRef Name="PriceText" />
+          </Key>
+          <Property Name="PriceId" Type="Int32" Nullable="false" />
+          <Property Name="PriceText" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="StoreName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="StroeLocation" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="StoreSetId" Type="Int32" />
+          <Property Name="StoreSetName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwStoreStoreSet">
+          <Key>
+            <PropertyRef Name="StoreId" />
+            <PropertyRef Name="StoreName" />
+          </Key>
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="StoreName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="StoreLocation" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="StoreSetId" Type="Int32" />
+          <Property Name="StoreSetName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="notepriceDbModelStoreContainer" CdmEntityContainer="MainDB">
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="Model.Good">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GoodsTypeId" ColumnName="GoodsTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsTypes">
+            <EntityTypeMapping TypeName="Model.GoodsType">
+              <MappingFragment StoreEntitySet="GoodsType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="Model.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SotreId" ColumnName="SotreId" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="GoodsTypeId" ColumnName="GoodsTypeId" />
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="Model.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="StoreSetId" ColumnName="StoreSetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreSets">
+            <EntityTypeMapping TypeName="Model.StoreSet">
+              <MappingFragment StoreEntitySet="StoreSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SortId" ColumnName="SortId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPriceStores">
+            <EntityTypeMapping TypeName="Model.vwPriceStore">
+              <MappingFragment StoreEntitySet="vwPriceStore">
+                <ScalarProperty Name="StoreSetName" ColumnName="StoreSetName" />
+                <ScalarProperty Name="StoreSetId" ColumnName="StoreSetId" />
+                <ScalarProperty Name="StroeLocation" ColumnName="StroeLocation" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="PriceText" ColumnName="PriceText" />
+                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwStoreStoreSets">
+            <EntityTypeMapping TypeName="Model.vwStoreStoreSet">
+              <MappingFragment StoreEntitySet="vwStoreStoreSet">
+                <ScalarProperty Name="StoreSetName" ColumnName="StoreSetName" />
+                <ScalarProperty Name="StoreSetId" ColumnName="StoreSetId" />
+                <ScalarProperty Name="StoreLocation" ColumnName="StoreLocation" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

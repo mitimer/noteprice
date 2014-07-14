@@ -1,3 +1,7 @@
 /noteprice.Db/*.user
 
 *.suo
+/TestResults
+/packages
+/noteprice.Bl/bin
+/noteprice.Bl/obj

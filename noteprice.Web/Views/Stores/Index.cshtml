@@ -1,0 +1,27 @@
+﻿@model noteprice.Web.Models.StoresListModel
+@{
+    ViewBag.Title = "Stores list";
+}
+<h2>Stores list</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>StoreSetId</th>
+        <th>StoreSet</th>
+    </tr>
+    @foreach (var s in Model.StoresList)
+    {
+        <tr>
+            <td>@s.StoreId</td>
+            <td>@s.StoreName</td>
+            <td>@s.StoreSetId</td>
+            <td>@s.StoreSetName</td>
+        </tr>
+    }
+ 
+</table>
+
+
+
