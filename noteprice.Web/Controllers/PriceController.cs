@@ -26,7 +26,7 @@ namespace noteprice.Web.Controllers
         // GET: Price/Create
         public ActionResult Create()
         {
-            var model = new PriceAddModel(Service.GetStores().ToList());
+            var model = new PriceAddModel{StoresList = Service.GetStores().ToList()};
             return View(model);
         }
 
@@ -50,7 +50,9 @@ namespace noteprice.Web.Controllers
         public ActionResult Edit(int id)
         {
             PriceDto price = Service.GetPrice(id);
-            return View(new PriceEditModel(price, Service.GetStores().ToList()));
+            var model = new PriceEditModel {StoresList = Service.GetStores().ToList()};
+            model.Init(price);
+            return View(model);
         }
 
         // POST: Price/Edit/5

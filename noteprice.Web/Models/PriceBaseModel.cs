@@ -6,14 +6,8 @@ namespace noteprice.Web.Models
 {
     public class PriceBaseModel
     {
-        public PriceBaseModel(List<StoreDto> storesList)
+        public void Init(PriceDto dto)
         {
-            StoresList = storesList;
-        }
-
-        public PriceBaseModel(PriceDto dto,List<StoreDto> storesList)
-        {
-            StoresList = storesList;
             Text = dto.Text;
             Value = dto.Value.ToString();
             Weight = dto.Weight.ToString();

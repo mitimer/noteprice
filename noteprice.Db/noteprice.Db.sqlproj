@@ -80,4 +80,7 @@
   <ItemGroup>
     <RefactorLog Include="noteprice.Db.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="noteprice.asure.publish.publish.xml" />
+  </ItemGroup>
 </Project>

@@ -61,6 +61,7 @@ namespace noteprice.Bl
                 Value = priceDto.Value,
                 Weight = priceDto.Weight,
                 StoreId = priceDto.StoreId,
+                Date = DateTime.Now,
             };
 
             DbContext.Prices.Add(price);
