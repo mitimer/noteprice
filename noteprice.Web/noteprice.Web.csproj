@@ -108,10 +108,15 @@
     <Compile Include="Classes\Log.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\PriceController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PriceAddModel.cs" />
+    <Compile Include="Models\PriceBaseModel.cs" />
+    <Compile Include="Models\PriceEditModel.cs" />
+    <Compile Include="Models\PriciesListModel.cs" />
     <Compile Include="Models\StoresListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +124,11 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Price\Delete.cshtml" />
+    <Content Include="Views\Price\Edit.cshtml" />
+    <Content Include="Views\Price\Create.cshtml" />
+    <Content Include="Views\Price\Details.cshtml" />
+    <Content Include="Views\Price\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

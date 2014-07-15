@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using EntityFramework.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using noteprice.Bl.DataModel;
 using noteprice.Bl.Dto;
 using System.Transactions;
 
@@ -43,13 +46,19 @@ namespace noteprice.Bl.Tests
 	    public void CreatePriceTest()
 	    {
 	        //Arrange
-	        GetStoreTest();
+            using (var db = new MainDB())
+            {
+                db.Prices.Delete();
+            }
+
+            GetStoreTest();
 	        var price = new PriceDto
 	        {
 	            Text = "Ратибор варенье клубника",
 	            Value = 115.30m,
 	            Weight = 0.4m,
                 StoreId = _testStoreId,
+                Date = DateTime.Now
 	        };
 
 	        //Act
@@ -58,7 +67,12 @@ namespace noteprice.Bl.Tests
 	        //Assert
 	        var pricies = _service.GetPricies().ToList();
 
-	        Assert.IsTrue(pricies.Any(p => p.Text == price.Text));
+            Assert.IsTrue(pricies.Count>0);
+	        var actualPrice = pricies.FirstOrDefault(p => p.Text == price.Text);
+
+            Assert.AreEqual(price.Value,actualPrice.Value);
+            Assert.AreEqual(price.Weight, actualPrice.Weight);
+            Assert.AreEqual(_testStoreId, actualPrice.StoreId);
 	    }
 	}
 }

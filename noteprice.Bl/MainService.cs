@@ -29,6 +29,24 @@ namespace noteprice.Bl
         {
             return DbContext.vwPriceStores.Select(PriceDto.SelectException);
         }
+        
+        public PriceDto GetPrice(int id)
+        {
+            return DbContext.vwPriceStores
+                .Where(p => p.PriceId == id)
+                .Select(PriceDto.SelectException).FirstOrDefault();
+        }
+
+        public void UpdatePrice(PriceDto priceDto)
+        {
+            var price = DbContext.Prices.Where(p => p.Id == priceDto.Id).FirstOrDefault();
+            price.Text = priceDto.Text;
+            price.Value = priceDto.Value;
+            price.Weight = priceDto.Weight;
+            price.Date = priceDto.Date;
+            price.StoreId = priceDto.StoreId;
+            DbContext.SaveChanges();
+        }
 
         public void CreatePrice(PriceDto priceDto)
         {
@@ -41,6 +59,7 @@ namespace noteprice.Bl
             {
                 Text = priceDto.Text,
                 Value = priceDto.Value,
+                Weight = priceDto.Weight,
                 StoreId = priceDto.StoreId,
             };
 
@@ -56,5 +75,7 @@ namespace noteprice.Bl
                 this.dbContext = null;
             }
         }
+
+        
     }
 }

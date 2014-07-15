@@ -9,7 +9,6 @@ namespace noteprice.Bl.Dto
         public int Id { get; set; }
         public string Text { get; set; }
         public decimal Value { get; set; }
-        public int SotreId { get; set; }
         public decimal? Weight { get; set; }
         public DateTime? Date { get; set; }
         
@@ -26,6 +25,8 @@ namespace noteprice.Bl.Dto
         {
             Id = o.PriceId,
             Text = o.PriceText,
+            Value = o.PriceValue,
+            Weight = o.PriceWeight,
             StoreId = o.StoreId.Value,
             StoreName = o.StoreName,
             StroeLocation = o.StroeLocation,

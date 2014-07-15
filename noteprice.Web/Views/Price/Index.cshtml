@@ -1,0 +1,34 @@
+﻿@model noteprice.Web.Models.PriciesListModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pricies</h2> 
+@Html.ActionLink("Add Price", "Create")
+<br/>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Text</th>
+        <th>Value</th>
+        <th>Weight</th>
+        <th>Date</th>
+        <th>StoreName</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var p in Model.Pricies)
+    {
+        <tr>
+            <td>@p.Id</td>
+            <td>@p.Text</td>
+            <td>@p.Value</td>
+            <td>@p.Weight</td>
+            <td>@p.Date</td>
+            <td>@p.StoreName</td>
+            <td>@Html.ActionLink("Edit","Edit",new {p.Id})</td>
+        </tr>
+    }
+
+</table>

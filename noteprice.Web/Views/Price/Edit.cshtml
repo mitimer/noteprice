@@ -1,0 +1,54 @@
+﻿@model noteprice.Web.Models.PriceEditModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update price</h2>
+
+@using (Html.BeginForm("Edit", "Price", FormMethod.Post, new { role = "form" }))
+{
+    <h4>Create a new price.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div>
+        @Html.LabelFor(m => m.StoreId)
+        <div>
+            @Html.DropDownListFor(m => m.StoreId, Model.StoresList.Select(s => new SelectListItem { Text = string.Format("{0} ({1})", s.StoreName, s.StoreLocation), Value = s.StoreId.ToString() }).ToList())
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Text)
+        <div>
+            @Html.TextBoxFor(m => m.Text)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Value)
+        <div>
+            @Html.TextBoxFor(m => m.Value)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Weight)
+        <div>
+            @Html.TextBoxFor(m => m.Weight)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Date)
+        <div>
+            @Html.TextBoxFor(m => m.Date)
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <input type="submit" value="Update" />
+        </div>
+    </div>
+}
