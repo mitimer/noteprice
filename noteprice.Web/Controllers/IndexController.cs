@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace noteprice.Web.Controllers
 {
-    public class IndexController : Controller
+    public class IndexController : BaseController
     {
         //
         // GET: /Index/

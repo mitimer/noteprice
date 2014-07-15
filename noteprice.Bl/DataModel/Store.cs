@@ -24,7 +24,7 @@ namespace noteprice.Bl.DataModel
         public string Location { get; set; }
         public Nullable<int> StoreSetId { get; set; }
     
-        public virtual ICollection<Price> Prices { get; set; }
         public virtual StoreSet StoreSet { get; set; }
+        public virtual ICollection<Price> Prices { get; set; }
     }
 }

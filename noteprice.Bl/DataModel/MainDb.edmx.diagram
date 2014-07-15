@@ -7,16 +7,16 @@
       <Diagram DiagramId="22f43c53d77646b4a41c62d288e66852" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Good" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.GoodsType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Price" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Store" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.StoreSet" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Goods_GoodsType" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Price_Goods" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Price_GoodsType" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Price_Store" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Store_StoreSet" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.vwPriceStore" Width="1.5" PointX="7.375" PointY="3.25" />
         <EntityTypeShape EntityType="Model.vwStoreStoreSet" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Price" Width="1.5" PointX="5.25" PointY="2.125" />
+        <AssociationConnector Association="Model.FK_Price_Goods" />
+        <AssociationConnector Association="Model.FK_Price_GoodsType" />
+        <AssociationConnector Association="Model.FK_Price_Store" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,9 +1,6 @@
-/noteprice.Db/*.user
-
+bin
+obj
 *.suo
-/TestResults
-/packages
-/noteprice.Bl/bin
-/noteprice.Bl/obj
-/noteprice.Web/bin
-/noteprice.Web/obj
+*.user
+packages
+*.dbmdl

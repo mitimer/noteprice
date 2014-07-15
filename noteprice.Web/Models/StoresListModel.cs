@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using noteprice.Bl.DataModel;
+using noteprice.Bl.Dto;
 
 namespace noteprice.Web.Models
 {
 	public class StoresListModel
 	{
-		public List<vwStoreStoreSet> StoresList { get; set; }
+        public string StoreIdSelected { get; set; }
+        public List<StoreDto> StoresList { get; set; }
 	}
 }

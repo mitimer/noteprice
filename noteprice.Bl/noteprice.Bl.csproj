@@ -86,6 +86,10 @@
     <Compile Include="DataModel\vwStoreStoreSet.cs">
       <DependentUpon>MainDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dto\PriceDto.cs" />
+    <Compile Include="Dto\PriceQueryDto.cs" />
+    <Compile Include="Dto\StoreDto.cs" />
+    <Compile Include="MainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

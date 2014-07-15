@@ -17,7 +17,7 @@ namespace noteprice.Bl.DataModel
         public int Id { get; set; }
         public string Text { get; set; }
         public decimal Value { get; set; }
-        public int SotreId { get; set; }
+        public int StoreId { get; set; }
         public Nullable<decimal> Weight { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> GoodsTypeId { get; set; }

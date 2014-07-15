@@ -4,6 +4,8 @@
 }
 <h2>Stores list</h2>
 
+@Html.DropDownListFor(m => m.StoreIdSelected, Model.StoresList.Select(s => new SelectListItem { Text = string.Format("{0} ({1})", s.StoreName,s.StoreLocation), Value = s.StoreId.ToString() }).ToList())
+
 <table>
     <tr>
         <th>Id</th>

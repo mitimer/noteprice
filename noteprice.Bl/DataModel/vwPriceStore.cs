@@ -21,5 +21,8 @@ namespace noteprice.Bl.DataModel
         public string StroeLocation { get; set; }
         public Nullable<int> StoreSetId { get; set; }
         public string StoreSetName { get; set; }
+        public decimal PriceValue { get; set; }
+        public Nullable<decimal> PriceWeight { get; set; }
+        public Nullable<System.DateTime> PriceDate { get; set; }
     }
 }
