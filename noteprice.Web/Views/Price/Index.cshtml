@@ -4,19 +4,22 @@
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Pricies</h2> 
 @Html.ActionLink("Add Price", "Create")
-<br/>
+
+@using (Html.BeginForm("Search", "Price", FormMethod.Get))
+{
+    @Html.TextBox("filter")
+    <input type="submit" value="Search" />
+}
 <div>
     @foreach (var p in Model.Pricies)
     {
-        <hr/>
         <div>
-            <div><b>@p.Text</b></div>
+            <div><b>[@p.Text]</b></div>
             <div>@p.StoreName @p.DateCreated.ToString("g") </div>
-            <div><b>@p.Value.ToString("N2")</b>  @p.Weight</div>
+            <div><b>@p.Value.ToString("N2")</b> |@p.Weight|</div>
             <div>@Html.ActionLink("Edit","Edit",new {p.Id})</div>
         </div>
+    <hr />
     }
 </div>

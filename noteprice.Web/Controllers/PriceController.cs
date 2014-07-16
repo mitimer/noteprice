@@ -10,6 +10,14 @@ namespace noteprice.Web.Controllers
 {
     public class PriceController : BaseController
     {
+        // GET: Price/Search/
+        public ActionResult Search(string filter)
+        {
+            filter = filter.ToLower();
+            var model = new PriciesListModel { Pricies = AppContext.Service.GetPricies().Where(p => p.Text.ToLower().Contains(filter)).ToList() };
+            return View("Index",model);
+        }
+
         // GET: Price
         public ActionResult Index()
         {
