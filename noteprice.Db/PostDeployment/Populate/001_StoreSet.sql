@@ -8,10 +8,10 @@ declare @t table
 --
 insert into @t([Id], [Name])
 values
-(1, 'Dixi'),
-(2, 'Magnit'),
-(3, '5-ka'),
-(4, 'Spar')
+(1, 'DIXI'),
+(2, 'MAGNIT'),
+(3, 'Pyterochka'),
+(4, 'SPAR')
 
 merge into [dbo].[StoreSet] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

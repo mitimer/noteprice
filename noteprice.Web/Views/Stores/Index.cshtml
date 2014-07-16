@@ -4,7 +4,7 @@
 }
 <h2>Stores list</h2>
 
-@Html.DropDownListFor(m => m.StoreIdSelected, Model.StoresList.Select(s => new SelectListItem { Text = string.Format("{0} ({1})", s.StoreName,s.StoreLocation), Value = s.StoreId.ToString() }).ToList())
+@Html.DropDownListFor(m => m.StoreIdSelected, Model.StoresList.Select(s => new SelectListItem { Text = string.Format("{0} ({1})", s.StoreName,s.StoreLocation), Value = s.Id.ToString() }).ToList())
 
 <table>
     <tr>
@@ -16,7 +16,7 @@
     @foreach (var s in Model.StoresList)
     {
         <tr>
-            <td>@s.StoreId</td>
+            <td>@s.Id</td>
             <td>@s.StoreName</td>
             <td>@s.StoreSetId</td>
             <td>@s.StoreSetName</td>

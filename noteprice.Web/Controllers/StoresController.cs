@@ -12,12 +12,11 @@ namespace noteprice.Web.Controllers
 	    {
 		    StoresListModel model = new StoresListModel();
 
-            model.StoresList = Service.GetStores().ToList();
+            model.StoresList = AppContext.Service.GetStores().ToList();
 		 
 		    Log.Info("Stores list");
 
 		    return View(model);
 	    }
-	    
     }
 }

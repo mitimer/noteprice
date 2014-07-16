@@ -16,12 +16,15 @@ namespace noteprice.Bl.DataModel
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public decimal Value { get; set; }
+        public Nullable<decimal> Value { get; set; }
         public int StoreId { get; set; }
         public Nullable<decimal> Weight { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> GoodsTypeId { get; set; }
         public Nullable<int> GoodsId { get; set; }
+        public string ValueStr { get; set; }
+        public string WeightStr { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
         public virtual Good Good { get; set; }
         public virtual GoodsType GoodsType { get; set; }

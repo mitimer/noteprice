@@ -7,8 +7,6 @@ namespace noteprice.Web.Models
 {
     public class PriceEditModel : PriceBaseModel
     {
-       
-        [Display(Name = "Date")]
-        public DateTime Date { get; set; }
+        
     }
 }

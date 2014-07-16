@@ -15,14 +15,17 @@ namespace noteprice.Bl.DataModel
     public partial class vwPriceStore
     {
         public int PriceId { get; set; }
+        public Nullable<bool> PriceIsActive { get; set; }
         public string PriceText { get; set; }
+        public string PriceValueStr { get; set; }
+        public string PriceWeightStr { get; set; }
+        public System.DateTime PriceDateCreated { get; set; }
+        public Nullable<decimal> PriceValue { get; set; }
+        public Nullable<decimal> PriceWeight { get; set; }
         public Nullable<int> StoreId { get; set; }
         public string StoreName { get; set; }
         public string StroeLocation { get; set; }
         public Nullable<int> StoreSetId { get; set; }
         public string StoreSetName { get; set; }
-        public decimal PriceValue { get; set; }
-        public Nullable<decimal> PriceWeight { get; set; }
-        public Nullable<System.DateTime> PriceDate { get; set; }
     }
 }

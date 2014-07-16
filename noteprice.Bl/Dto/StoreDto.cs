@@ -6,7 +6,7 @@ namespace noteprice.Bl.Dto
 {
     public class StoreDto
     {
-        public int StoreId { get; set; }
+        public int Id { get; set; }
         public string StoreName { get; set; }
         public string StoreLocation { get; set; }
         public int? StoreSetId { get; set; }
@@ -14,7 +14,7 @@ namespace noteprice.Bl.Dto
 
         public static Expression<Func<vwStoreStoreSet,StoreDto>> SelectExpression = o=> new StoreDto
         {
-            StoreId = o.StoreId,
+            Id = o.StoreId,
             StoreName = o.StoreName,
             StoreLocation = o.StoreLocation,
             StoreSetId = o.StoreSetId,

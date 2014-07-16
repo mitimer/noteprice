@@ -8,27 +8,15 @@
 <h2>Pricies</h2> 
 @Html.ActionLink("Add Price", "Create")
 <br/>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Text</th>
-        <th>Value</th>
-        <th>Weight</th>
-        <th>Date</th>
-        <th>StoreName</th>
-        <th>Action</th>
-    </tr>
+<div>
     @foreach (var p in Model.Pricies)
     {
-        <tr>
-            <td>@p.Id</td>
-            <td>@p.Text</td>
-            <td>@p.Value</td>
-            <td>@p.Weight</td>
-            <td>@p.Date</td>
-            <td>@p.StoreName</td>
-            <td>@Html.ActionLink("Edit","Edit",new {p.Id})</td>
-        </tr>
+        <hr/>
+        <div>
+            <div><b>@p.Text</b></div>
+            <div>@p.StoreName @p.DateCreated.ToString("g") </div>
+            <div><b>@p.Value.ToString("N2")</b>  @p.Weight</div>
+            <div>@Html.ActionLink("Edit","Edit",new {p.Id})</div>
+        </div>
     }
-
-</table>
+</div>

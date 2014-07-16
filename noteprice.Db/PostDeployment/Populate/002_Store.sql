@@ -10,13 +10,13 @@ declare @t table
 --
 insert into @t([Id], [Name], [Location], [StoreSetId])
 values
-(1, 'Dixi','l1',1),
-(2, 'Magnit','l2',2),
-(3, '5-ka','mih',3),
-(4, 'Spar','krasn',4),
-(5, 'Spar','frunz',4),
-(6, '5-ka','Buden',3),
-(7, 'Spar','stadion',4)
+(1, 'DIXI','Miheeva',1),
+(2, 'MAGNIT','Perekop',2),
+(3, 'Pyterochka','Miheeva',3),
+(4, 'SPAR','Kazanova',4),
+(5, 'SPAR','Frunze',4),
+(6, 'Pyterochka','Budennogo',3),
+(7, 'SPAR','Arsenal',4)
 
 merge into [dbo].[Store] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

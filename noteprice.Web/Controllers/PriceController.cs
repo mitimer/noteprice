@@ -13,7 +13,7 @@ namespace noteprice.Web.Controllers
         // GET: Price
         public ActionResult Index()
         {
-            var model = new PriciesListModel {Pricies = Service.GetPricies().ToList()};
+            var model = new PriciesListModel {Pricies = AppContext.Service.GetPricies().ToList()};
             return View(model);
         }
 
@@ -26,8 +26,7 @@ namespace noteprice.Web.Controllers
         // GET: Price/Create
         public ActionResult Create()
         {
-            var model = new PriceAddModel{StoresList = Service.GetStores().ToList()};
-            return View(model);
+            return View();
         }
 
         // POST: Price/Create
@@ -36,7 +35,7 @@ namespace noteprice.Web.Controllers
         {
             try
             {
-                Service.CreatePrice(model.GetDto());
+                AppContext.Service.CreatePrice(model.GetDto());
 
                 return RedirectToAction("Index");
             }
@@ -49,8 +48,8 @@ namespace noteprice.Web.Controllers
         // GET: Price/Edit/5
         public ActionResult Edit(int id)
         {
-            PriceDto price = Service.GetPrice(id);
-            var model = new PriceEditModel {StoresList = Service.GetStores().ToList()};
+            PriceDto price = AppContext.Service.GetPrice(id);
+            var model = new PriceEditModel();
             model.Init(price);
             return View(model);
         }
@@ -61,13 +60,16 @@ namespace noteprice.Web.Controllers
         {
             try
             {
-                Service.UpdatePrice(model.GetDto());
+                PriceDto priceDto = model.GetDto();
+                priceDto.Id = id;
+
+                AppContext.Service.PriceUpdate(priceDto);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(ex);
             }
         }
 

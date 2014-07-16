@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="22f43c53d77646b4a41c62d288e66852" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Good" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GoodsType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Store" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.StoreSet" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Good" Width="1.5" PointX="5.625" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GoodsType" Width="1.5" PointX="5.625" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Store" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.StoreSet" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Goods_GoodsType" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Store_StoreSet" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.vwPriceStore" Width="1.5" PointX="7.375" PointY="3.25" />
-        <EntityTypeShape EntityType="Model.vwStoreStoreSet" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.Price" Width="1.5" PointX="5.25" PointY="2.125" />
+        <EntityTypeShape EntityType="Model.vwStoreStoreSet" Width="1.5" PointX="2.375" PointY="6.625" />
+        <EntityTypeShape EntityType="Model.Price" Width="1.5" PointX="3.25" PointY="1.375" />
+        <EntityTypeShape EntityType="Model.vwPriceStore" Width="1.5" PointX="0.5" PointY="6.375" />
         <AssociationConnector Association="Model.FK_Price_Goods" />
         <AssociationConnector Association="Model.FK_Price_GoodsType" />
         <AssociationConnector Association="Model.FK_Price_Store" />

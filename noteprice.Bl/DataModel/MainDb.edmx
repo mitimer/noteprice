@@ -26,12 +26,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="350" Nullable="false" />
-          <Property Name="Value" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="10" Scale="4" />
           <Property Name="StoreId" Type="int" Nullable="false" />
           <Property Name="Weight" Type="decimal" Precision="10" Scale="4" />
-          <Property Name="Date" Type="datetime2" Precision="7" />
           <Property Name="GoodsTypeId" Type="int" />
           <Property Name="GoodsId" Type="int" />
+          <Property Name="ValueStr" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="WeightStr" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -51,18 +54,22 @@
           <Property Name="SortId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'noteprice.Db.dbo.vwPriceStore' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'noteprice.dbo.vwPriceStore' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwPriceStore">
           <Key>
             <PropertyRef Name="PriceId" />
             <PropertyRef Name="PriceText" />
-            <PropertyRef Name="PriceValue" />
+            <PropertyRef Name="PriceValueStr" />
+            <PropertyRef Name="PriceDateCreated" />
           </Key>
           <Property Name="PriceId" Type="int" Nullable="false" />
+          <Property Name="PriceIsActive" Type="bit" />
           <Property Name="PriceText" Type="nvarchar" MaxLength="350" Nullable="false" />
-          <Property Name="PriceValue" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="PriceValueStr" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PriceWeightStr" Type="nvarchar" MaxLength="150" />
+          <Property Name="PriceDateCreated" Type="datetime" Nullable="false" />
+          <Property Name="PriceValue" Type="decimal" Precision="10" Scale="4" />
           <Property Name="PriceWeight" Type="decimal" Precision="10" Scale="4" />
-          <Property Name="PriceDate" Type="datetime2" Precision="7" />
           <Property Name="StoreId" Type="int" />
           <Property Name="StoreName" Type="nvarchar" MaxLength="300" />
           <Property Name="StroeLocation" Type="nvarchar" MaxLength="400" />
@@ -70,7 +77,7 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwPriceStore' does not have a pri
           <Property Name="StoreSetName" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'noteprice.dbo.vwStoreStoreSet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwStoreStoreSet">
           <Key>
             <PropertyRef Name="StoreId" />
@@ -151,10 +158,13 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
           <EntitySet Name="vwPriceStore" EntityType="Self.vwPriceStore" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vwPriceStore].[PriceId] AS [PriceId], 
+    [vwPriceStore].[PriceIsActive] AS [PriceIsActive], 
     [vwPriceStore].[PriceText] AS [PriceText], 
+    [vwPriceStore].[PriceValueStr] AS [PriceValueStr], 
+    [vwPriceStore].[PriceWeightStr] AS [PriceWeightStr], 
+    [vwPriceStore].[PriceDateCreated] AS [PriceDateCreated], 
     [vwPriceStore].[PriceValue] AS [PriceValue], 
     [vwPriceStore].[PriceWeight] AS [PriceWeight], 
-    [vwPriceStore].[PriceDate] AS [PriceDate], 
     [vwPriceStore].[StoreId] AS [StoreId], 
     [vwPriceStore].[StoreName] AS [StoreName], 
     [vwPriceStore].[StroeLocation] AS [StroeLocation], 
@@ -272,9 +282,9 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
             <End Role="StoreSet" EntitySet="StoreSets" />
             <End Role="Store" EntitySet="Stores" />
           </AssociationSet>
-          <EntitySet Name="vwPriceStores" EntityType="Model.vwPriceStore" />
           <EntitySet Name="vwStoreStoreSets" EntityType="Model.vwStoreStoreSet" />
           <EntitySet Name="Prices" EntityType="Model.Price" />
+          <EntitySet Name="vwPriceStores" EntityType="Model.vwPriceStore" />
           <AssociationSet Name="FK_Price_Goods" Association="Model.FK_Price_Goods">
             <End Role="Good" EntitySet="Goods" />
             <End Role="Price" EntitySet="Prices" />
@@ -287,24 +297,7 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
             <End Role="Store" EntitySet="Stores" />
             <End Role="Price" EntitySet="Prices" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="vwPriceStore">
-          <Key>
-            <PropertyRef Name="PriceId" />
-            <PropertyRef Name="PriceText" />
-            <PropertyRef Name="PriceValue" />
-          </Key>
-          <Property Name="PriceId" Type="Int32" Nullable="false" />
-          <Property Name="PriceText" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
-          <Property Name="StoreId" Type="Int32" />
-          <Property Name="StoreName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="StroeLocation" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="StoreSetId" Type="Int32" />
-          <Property Name="StoreSetName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="PriceValue" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
-          <Property Name="PriceWeight" Type="Decimal" Precision="10" Scale="4" />
-          <Property Name="PriceDate" Type="DateTime" Precision="7" />
-        </EntityType>
+          </EntityContainer>
         <EntityType Name="vwStoreStoreSet">
           <Key>
             <PropertyRef Name="StoreId" />
@@ -322,15 +315,39 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Value" Type="Decimal" Precision="10" Scale="4" />
           <Property Name="StoreId" Type="Int32" Nullable="false" />
           <Property Name="Weight" Type="Decimal" Precision="10" Scale="4" />
-          <Property Name="Date" Type="DateTime" Precision="7" />
           <Property Name="GoodsTypeId" Type="Int32" />
           <Property Name="GoodsId" Type="Int32" />
+          <Property Name="ValueStr" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WeightStr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Good" Relationship="Model.FK_Price_Goods" FromRole="Price" ToRole="Good" />
           <NavigationProperty Name="GoodsType" Relationship="Model.FK_Price_GoodsType" FromRole="Price" ToRole="GoodsType" />
           <NavigationProperty Name="Store" Relationship="Model.FK_Price_Store" FromRole="Price" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="vwPriceStore">
+          <Key>
+            <PropertyRef Name="PriceId" />
+            <PropertyRef Name="PriceText" />
+            <PropertyRef Name="PriceValueStr" />
+            <PropertyRef Name="PriceDateCreated" />
+          </Key>
+          <Property Name="PriceId" Type="Int32" Nullable="false" />
+          <Property Name="PriceIsActive" Type="Boolean" />
+          <Property Name="PriceText" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="PriceValueStr" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PriceWeightStr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PriceDateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PriceValue" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="PriceWeight" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="StoreName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="StroeLocation" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="StoreSetId" Type="Int32" />
+          <Property Name="StoreSetName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Price_Goods">
           <End Type="Model.Good" Role="Good" Multiplicity="0..1" />
@@ -368,7 +385,7 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -410,22 +427,6 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwPriceStores">
-            <EntityTypeMapping TypeName="Model.vwPriceStore">
-              <MappingFragment StoreEntitySet="vwPriceStore">
-                <ScalarProperty Name="PriceDate" ColumnName="PriceDate" />
-                <ScalarProperty Name="PriceWeight" ColumnName="PriceWeight" />
-                <ScalarProperty Name="PriceValue" ColumnName="PriceValue" />
-                <ScalarProperty Name="StoreSetName" ColumnName="StoreSetName" />
-                <ScalarProperty Name="StoreSetId" ColumnName="StoreSetId" />
-                <ScalarProperty Name="StroeLocation" ColumnName="StroeLocation" />
-                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
-                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
-                <ScalarProperty Name="PriceText" ColumnName="PriceText" />
-                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwStoreStoreSets">
             <EntityTypeMapping TypeName="Model.vwStoreStoreSet">
               <MappingFragment StoreEntitySet="vwStoreStoreSet">
@@ -440,14 +441,36 @@ warning 6002: The table/view 'noteprice.Db.dbo.vwStoreStoreSet' does not have a 
           <EntitySetMapping Name="Prices">
             <EntityTypeMapping TypeName="Model.Price">
               <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WeightStr" ColumnName="WeightStr" />
+                <ScalarProperty Name="ValueStr" ColumnName="ValueStr" />
                 <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
                 <ScalarProperty Name="GoodsTypeId" ColumnName="GoodsTypeId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPriceStores">
+            <EntityTypeMapping TypeName="Model.vwPriceStore">
+              <MappingFragment StoreEntitySet="vwPriceStore">
+                <ScalarProperty Name="StoreSetName" ColumnName="StoreSetName" />
+                <ScalarProperty Name="StoreSetId" ColumnName="StoreSetId" />
+                <ScalarProperty Name="StroeLocation" ColumnName="StroeLocation" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="PriceWeight" ColumnName="PriceWeight" />
+                <ScalarProperty Name="PriceValue" ColumnName="PriceValue" />
+                <ScalarProperty Name="PriceDateCreated" ColumnName="PriceDateCreated" />
+                <ScalarProperty Name="PriceWeightStr" ColumnName="PriceWeightStr" />
+                <ScalarProperty Name="PriceValueStr" ColumnName="PriceValueStr" />
+                <ScalarProperty Name="PriceText" ColumnName="PriceText" />
+                <ScalarProperty Name="PriceIsActive" ColumnName="PriceIsActive" />
+                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

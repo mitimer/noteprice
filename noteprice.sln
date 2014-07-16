@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "noteprice.Db", "noteprice.Db\noteprice.Db.sqlproj", "{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}"
 EndProject
@@ -15,24 +15,34 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "noteprice.Web", "noteprice.
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Azure|Any CPU = Azure|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Azure|Any CPU.Build.0 = Azure|Any CPU
+		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Azure|Any CPU.Deploy.0 = Azure|Any CPU
 		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C95E2D95-0086-4BAB-ADC6-4B047972D2B3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3BB4946B-5659-4C5E-A121-4C5F8394B325}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{3BB4946B-5659-4C5E-A121-4C5F8394B325}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{3BB4946B-5659-4C5E-A121-4C5F8394B325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3BB4946B-5659-4C5E-A121-4C5F8394B325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BB4946B-5659-4C5E-A121-4C5F8394B325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BB4946B-5659-4C5E-A121-4C5F8394B325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79FA8B52-B8C0-4582-A100-B7C84177C3CA}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{79FA8B52-B8C0-4582-A100-B7C84177C3CA}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{79FA8B52-B8C0-4582-A100-B7C84177C3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79FA8B52-B8C0-4582-A100-B7C84177C3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79FA8B52-B8C0-4582-A100-B7C84177C3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79FA8B52-B8C0-4582-A100-B7C84177C3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DE0ACC-353C-4FDA-BC85-C550EB623336}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{63DE0ACC-353C-4FDA-BC85-C550EB623336}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{63DE0ACC-353C-4FDA-BC85-C550EB623336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63DE0ACC-353C-4FDA-BC85-C550EB623336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63DE0ACC-353C-4FDA-BC85-C550EB623336}.Release|Any CPU.ActiveCfg = Release|Any CPU

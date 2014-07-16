@@ -37,14 +37,22 @@ namespace noteprice.Bl
                 .Select(PriceDto.SelectException).FirstOrDefault();
         }
 
-        public void UpdatePrice(PriceDto priceDto)
+        public void PriceUpdate(PriceDto priceDto)
         {
-            var price = DbContext.Prices.Where(p => p.Id == priceDto.Id).FirstOrDefault();
+            if (priceDto == null || priceDto.Id==0)
+            {
+                throw new ArgumentException("price");
+            }
+
+            var price = DbContext.Prices.FirstOrDefault(p => p.Id == priceDto.Id);
             price.Text = priceDto.Text;
-            price.Value = priceDto.Value;
-            price.Weight = priceDto.Weight;
-            price.Date = priceDto.Date;
+
+            price.ValueStr = priceDto.ValueStr;
+            price.WeightStr = priceDto.WeightStr;
             price.StoreId = priceDto.StoreId;
+
+            PriceParseStrValues(price);
+
             DbContext.SaveChanges();
         }
 
@@ -54,20 +62,41 @@ namespace noteprice.Bl
             {
                 throw new ArgumentException("price");
             }
-
+            
             var price = new Price
             {
                 Text = priceDto.Text,
-                Value = priceDto.Value,
-                Weight = priceDto.Weight,
+                ValueStr = priceDto.ValueStr,
+                WeightStr = priceDto.WeightStr,
                 StoreId = priceDto.StoreId,
-                Date = DateTime.Now,
+                DateCreated = DateTime.Now,
             };
+
+            PriceParseStrValues(price);
 
             DbContext.Prices.Add(price);
             DbContext.SaveChanges();
         }
-        
+
+        private static void PriceParseStrValues(Price price)
+        {
+            decimal priceValue;
+            if (decimal.TryParse(price.ValueStr, out priceValue))
+            {
+                price.Value = priceValue;
+            }
+
+            decimal priceWeight;
+            if (decimal.TryParse(price.WeightStr, out priceWeight))
+            {
+                if (priceWeight > 5)
+                {
+                    priceWeight = priceWeight/1000;
+                }
+                price.Weight = priceWeight;
+            }
+        }
+
         public void Dispose()
         {
             if (this.dbContext != null)

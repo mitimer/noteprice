@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using noteprice.Bl.Dto;
 
@@ -9,13 +10,12 @@ namespace noteprice.Web.Models
         public void Init(PriceDto dto)
         {
             Text = dto.Text;
-            Value = dto.Value.ToString();
-            Weight = dto.Weight.ToString();
+            
+            ValueStr = dto.Value.ToString();
+            WeightStr = dto.Weight.ToString();
             StoreId = dto.StoreId;
         }
-
-        public List<StoreDto> StoresList { get; set; }
-
+        
         public int StoreId { get; set; }
 
         [Required]
@@ -24,14 +24,16 @@ namespace noteprice.Web.Models
 
         [Required]
         [Display(Name = "Value")]
-        public string Value { get; set; }
+        public string ValueStr { get; set; }
 
         [Display(Name = "Weight")]
-        public string Weight { get; set; }
+        public string WeightStr { get; set; }
 
         [Required]
         [Display(Name = "Store")]
         public string StoreIdStr { get; set; }
+
+        public DateTime? Date { get; set; }
 
         public PriceDto GetDto()
         {
@@ -39,9 +41,9 @@ namespace noteprice.Web.Models
             return new PriceDto
             {
                 Text = this.Text,
-                Value = decimal.Parse(this.Value),
-                Weight = decimal.Parse(this.Weight),
-                StoreId = int.Parse(this.StoreIdStr)
+                ValueStr = this.ValueStr,
+                WeightStr = this.WeightStr,
+                StoreId = int.Parse(this.StoreIdStr),
             };
         }
     }
