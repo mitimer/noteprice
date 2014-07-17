@@ -5,11 +5,9 @@
     ViewBag.Title = "Edit Price";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Update price</h2>
 @using (Html.BeginForm("Edit", "Price", FormMethod.Post, new { role = "form" }))
 {
     @Html.ValidationSummary("", new { @class = "text-danger" })
-
     <div>
         @Html.LabelFor(m => m.StoreIdStr)
         <div>

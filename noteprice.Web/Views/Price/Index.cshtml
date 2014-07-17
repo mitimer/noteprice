@@ -1,7 +1,7 @@
 ﻿@model noteprice.Web.Models.PriciesListModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Prices";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.ActionLink("Add Price", "Create")
@@ -12,14 +12,13 @@
     <input type="submit" value="Search" />
 }
 <div>
-    @foreach (var p in Model.Pricies)
-    {
-        <div>
-            <div><b>[@p.Text]</b></div>
-            <div>@p.StoreName @p.DateCreated.ToString("g") </div>
-            <div><b>@p.Value.ToString("N2")</b> |@p.Weight|</div>
-            <div>@Html.ActionLink("Edit","Edit",new {p.Id})</div>
-        </div>
-    <hr />
-    }
+        @foreach (var p in Model.Pricies)
+        {
+            <fieldset>
+                <legend> <b>@p.Text</b> </legend>
+                <div>@p.StoreName @p.DateCreated.ToString("M") </div>
+                <div><b>@p.Value.ToString("N2")</b> <i>@p.Weight</i> </div>
+                <div>@Html.ActionLink("Edit", "Edit", new {p.Id})</div>
+            </fieldset>
+        }
 </div>

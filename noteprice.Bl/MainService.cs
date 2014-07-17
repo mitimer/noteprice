@@ -69,7 +69,7 @@ namespace noteprice.Bl
                 ValueStr = priceDto.ValueStr,
                 WeightStr = priceDto.WeightStr,
                 StoreId = priceDto.StoreId,
-                DateCreated = DateTime.Now,
+                DateCreated = DateTime.UtcNow,
             };
 
             PriceParseStrValues(price);
