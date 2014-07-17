@@ -127,5 +127,23 @@ namespace noteprice.Bl.Tests
             Assert.AreEqual(newValue, actualPrice.Value);
             Assert.AreEqual(newWeight, actualPrice.Weight);
 	    }
+
+		[TestMethod]
+		public void UpdatePriceCustomWeightTest()
+		{
+			//Arrange
+			CreatePriceTest();
+			var price = _service.GetPrice(_testPriceId);
+			price.WeightStr = "10 таблеток";
+
+			//Act
+			_service.PriceUpdate(price);
+
+			//Assert
+			var actualPrice = _service.GetPrice(_testPriceId);
+			Assert.IsNotNull(actualPrice);
+			Assert.AreEqual(price.WeightStr, actualPrice.WeightStr);
+			Assert.AreEqual(0, actualPrice.Weight);
+		}
 	}
 }

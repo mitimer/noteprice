@@ -10,6 +10,7 @@
     [WeightStr] NVARCHAR(150) NULL, 
     [IsActive] BIT NULL, 
     [DateCreated] DATETIME NOT NULL, 
+    [IsPromo] BIT NULL, 
     CONSTRAINT [PK_Price] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Price_Goods] FOREIGN KEY ([GoodsId]) REFERENCES [dbo].[Goods] ([Id]),
     CONSTRAINT [FK_Price_GoodsType] FOREIGN KEY ([GoodsTypeId]) REFERENCES [dbo].[GoodsType] ([Id]),

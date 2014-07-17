@@ -11,8 +11,8 @@ namespace noteprice.Web.Models
         {
             Text = dto.Text;
             
-            ValueStr = dto.Value.ToString();
-            WeightStr = dto.Weight.ToString();
+            ValueStr = dto.ValueStr;
+            WeightStr = dto.WeightStr;
             StoreId = dto.StoreId;
         }
         

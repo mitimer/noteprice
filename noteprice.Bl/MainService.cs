@@ -85,6 +85,10 @@ namespace noteprice.Bl
             {
                 price.Value = priceValue;
             }
+            else
+            {
+	            price.Value = 0;
+            }
 
             decimal priceWeight;
             if (decimal.TryParse(price.WeightStr, out priceWeight))
@@ -94,6 +98,10 @@ namespace noteprice.Bl
                     priceWeight = priceWeight/1000;
                 }
                 price.Weight = priceWeight;
+            }
+            else
+            {
+	            price.Weight = 0;
             }
         }
 

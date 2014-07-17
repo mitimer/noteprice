@@ -4,3 +4,6 @@ obj
 *.user
 packages
 *.dbmdl
+noteprice.Bl.Tests/App.config
+noteprice.Bl.Tests/App.config
+noteprice.Web/Web.config
