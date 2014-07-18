@@ -1,24 +1,24 @@
-﻿@model noteprice.Web.Models.PriciesListModel
-
+﻿@model IEnumerable<noteprice.Web.Models.PricieViewModel>
 @{
     ViewBag.Title = "Prices";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.ActionLink("Add Price", "Create")
-
-@using (Html.BeginForm("Search", "Price", FormMethod.Get))
-{
-    @Html.TextBox("filter")
-    <input type="submit" value="Search" />
-}
+<br/>
 <div>
-        @foreach (var p in Model.Pricies)
-        {
-            <fieldset>
-                <legend> <b>@p.Text</b> </legend>
-                <div>@p.StoreName @p.DateCreated.ToString("M") </div>
-                <div><b>@p.Value.ToString("N0")</b>р. <i>@p.WeightStr</i> </div>
-                <div>@Html.ActionLink("Edit", "Edit", new {p.Id})</div>
-            </fieldset>
-        }
+    @using (Ajax.BeginForm("Search", "Price", new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "priciesList",
+    LoadingElementId = "loader"
+}))
+    {
+        @Html.TextBox("filter")
+        <input type="submit" value="Search" />
+    }
 </div>
+<div id="loader" class=" aletr" style="display:none">
+    Loading...<img src="~/Content/Images/ajax-loader.gif" />
+</div>
+
+@Html.Partial("PriceList")

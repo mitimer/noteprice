@@ -1,0 +1,7 @@
+﻿@model noteprice.Web.Models.PricieViewModel
+<fieldset>
+    <legend> <b>@Html.DisplayFor(m=>m.Text)</b> </legend>
+    <div>@Html.DisplayFor(m => m.StoreName)  @Html.DisplayFor(m => m.DateCreated.ToString("M")) </div>
+    <div><b>@Html.DisplayFor(m => m.Value.ToString("N0"))</b> <i> @Html.DisplayFor(m => m.WeightStr)</i> </div>
+    <div>@Html.ActionLink("Edit", "Edit", new { Model.Id })</div>
+</fieldset>
