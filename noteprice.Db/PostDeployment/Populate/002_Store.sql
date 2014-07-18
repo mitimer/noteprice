@@ -11,13 +11,13 @@ declare @t table
 --
 insert into @t([Id], [Name], [Location], [StoreSetId], [IsActive])
 values
-(1, 'DIXI','Miheeva',1,1),
-(2, 'MAGNIT','Perekop',2,1),
-(3, 'Pyterochka','Miheeva',3,1),
+(1, 'DIXI','Mih',1,1),
+(2, 'MAGNIT','Perekopsk',2,1),
+(3, 'Pyterochka','Mih',3,1),
 (4, 'SPAR','Kazanova',4,1),
-(5, 'SPAR','Frunze',4,1),
-(6, 'Pyterochka','Budennogo',3,1),
-(7, 'SPAR','Arsenal',4,1),
+(5, 'SPAR','Frunze',4,0),
+(6, 'Pyterochka','Budennogo',3,0),
+(7, 'SPAR','Arsenal',4,0),
 (101, 'TBOY-DOKTOR','',101,1),
 (102, 'LADUSHKA','',102,1),
 (103, 'SPAR-APTEKA','',103,1)

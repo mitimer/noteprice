@@ -12,3 +12,4 @@ from
 		left join 
 		[dbo].[StoreSet] ss
 			on s.StoreSetId = ss.Id
+where s.IsActive = 1

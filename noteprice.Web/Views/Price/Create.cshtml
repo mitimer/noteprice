@@ -14,7 +14,7 @@
         @Html.LabelFor(m => m.StoreIdStr)
         <div>
             
-            @Html.DropDownListFor(m => m.StoreIdStr, AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem { Text = string.Format("{0} ({1})", s.StoreName, s.StoreLocation), Value = s.Id.ToString(), Selected = Model!=null && s.Id == Model.StoreId }).ToList(), "-Select Store-")
+            @Html.DropDownListFor(m => m.StoreIdStr, AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem { Text = s.StoreName, Value = s.Id.ToString(), Selected = Model!=null && s.Id == Model.StoreId }).ToList(), "-Select Store-")
         </div>
     </div>
         <div>
