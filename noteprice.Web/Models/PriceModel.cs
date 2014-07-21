@@ -5,17 +5,30 @@ using noteprice.Bl.Dto;
 
 namespace noteprice.Web.Models
 {
-    public class PriceBaseModel
+
+	public enum PriceEditMode
+	{
+		Create,
+		Update,
+		MakeCopy
+	}
+
+	public class PriceModel
     {
-        public void Init(PriceDto dto)
-        {
-            Text = dto.Text;
-            
+		public void Init(PriceDto dto, PriceEditMode editMode)
+		{
+			EditMode = editMode;
+			Id = dto.Id;
+			Text = dto.Text;
             ValueStr = dto.ValueStr;
             WeightStr = dto.WeightStr;
             StoreId = dto.StoreId;
         }
-        
+
+		public int Id { get; set; }
+
+		public PriceEditMode EditMode { get; set; }
+
         public int StoreId { get; set; }
 
         [Required]
@@ -40,7 +53,8 @@ namespace noteprice.Web.Models
             //TODO: Parse in controller with more powerful logic
             return new PriceDto
             {
-                Text = this.Text,
+                Id = this.Id,
+				Text = this.Text,
                 ValueStr = this.ValueStr,
                 WeightStr = this.WeightStr,
                 StoreId = int.Parse(this.StoreIdStr),

@@ -26,54 +26,54 @@ namespace noteprice.Web.Controllers
             var model = new List<PricieViewModel>();
             return View(model);
         }
-
-        // GET: Price/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+		
         // GET: Price/Create
         public ActionResult Create()
         {
-            return View();
+			var model = new PriceModel{EditMode = PriceEditMode.Create};
+			return View("Edit");
         }
+		
+		// GET: Price/Edit/5
+		public ActionResult Edit(int id)
+		{
+			PriceDto price = AppContext.Service.GetPrice(id);
+			var model = new PriceModel();
+			model.Init(price,PriceEditMode.Update);
+			return View("Edit",model);
+		}
 
-        // POST: Price/Create
-        [HttpPost]
-        public ActionResult Create(PriceAddModel model)
-        {
-            try
-            {
-                AppContext.Service.CreatePrice(model.GetDto());
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Price/Edit/5
-        public ActionResult Edit(int id)
-        {
-            PriceDto price = AppContext.Service.GetPrice(id);
-            var model = new PriceEditModel();
-            model.Init(price);
-            return View(model);
-        }
-
+		// GET: Price/MakeCopy/5
+		public ActionResult MakeCopy(int id)
+		{
+			PriceDto price = AppContext.Service.GetPrice(id);
+			var model = new PriceModel();
+			model.Init(price, PriceEditMode.MakeCopy);
+			return View("Edit", model);
+		}
+      
         // POST: Price/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, PriceEditModel model)
+        public ActionResult Edit(PriceModel model)
         {
             try
             {
                 PriceDto priceDto = model.GetDto();
-                priceDto.Id = id;
 
-                AppContext.Service.PriceUpdate(priceDto);
+				switch (model.EditMode)
+				{
+					case PriceEditMode.Create:
+						AppContext.Service.CreatePrice(priceDto);
+						break;
+					case PriceEditMode.Update:
+						AppContext.Service.PriceUpdate(priceDto);
+						break;
+					case PriceEditMode.MakeCopy:
+						AppContext.Service.CreatePrice(priceDto);
+						break;
+					default:
+						break;
+				}
 
                 return RedirectToAction("Index");
             }
@@ -83,26 +83,7 @@ namespace noteprice.Web.Controllers
             }
         }
 
-        // GET: Price/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+     
 
-        // POST: Price/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

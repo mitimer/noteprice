@@ -1,5 +1,5 @@
 ﻿@using noteprice.Web.Classes
-@model noteprice.Web.Models.PriceEditModel
+@model noteprice.Web.Models.PriceModel
 
 @{
     ViewBag.Title = "Edit Price";
@@ -38,7 +38,10 @@
 
     <div>
         <div>
-            <input type="submit" value="Update" />
+            <input type="submit" value="Save" />
         </div>
     </div>
+    
+    @Html.HiddenFor(m=>m.Id)
+    @Html.HiddenFor(m => m.EditMode)
 }

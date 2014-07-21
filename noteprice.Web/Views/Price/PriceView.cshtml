@@ -1,7 +1,12 @@
 ﻿@model noteprice.Web.Models.PricieViewModel
 <fieldset>
         <legend> <b>@Model.Text</b> </legend>
-        <div>@Model.StoreName @Model.DateCreated.ToString("M") </div>
-        <div><b>@Model.Value.ToString("N0")</b>р. <i>@Model.WeightStr</i>  <b>[@Model.NormalValue.Value.ToString("N0")]</b></div>
-        <div>@Html.ActionLink("Edit", "Edit", new { Model.Id })</div>
+    <div style="width: 60%; float:left">
+        <div> @Model.DateCreated.ToString("M") </div>
+        <div>@Model.Value.ToString("N0")р. <i>@Model.WeightStr</i>  </div>
+        <div>@Html.ActionLink("Edit", "Edit", new { Model.Id }) @Html.ActionLink("Make a copy", "MakeCopy", new { Model.Id })</div>
+    </div>
+    <div style="float:right" > <div>@Model.StoreName</div>
+    <div><b style="float: right">@Model.NormalValue.Value.ToString("N0")</b></div> 
+    </div>
     </fieldset>
