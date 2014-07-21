@@ -27,7 +27,7 @@ namespace noteprice.Bl.Dto
         public static Expression<Func<vwPriceStore,PriceDto>> SelectException = o=> new PriceDto
         {
             Id = o.PriceId,
-            IsActive = o.PriceIsActive ?? true,
+            IsActive = o.PriceIsActive,
             Text = o.PriceText,
             ValueStr = o.PriceValueStr,
             WeightStr = o.PriceWeightStr,

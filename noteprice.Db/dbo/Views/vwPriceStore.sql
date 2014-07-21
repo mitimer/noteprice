@@ -1,9 +1,8 @@
-﻿
-CREATE VIEW [dbo].[vwPriceStore]
+﻿CREATE VIEW [dbo].[vwPriceStore]
 AS
 select 	
 	p.Id as PriceId,
-	p.[IsActive] as PriceIsActive,
+	ISNULL(p.[IsActive],0) as PriceIsActive,
 	p.[Text] as PriceText,
 	p.[ValueStr] as PriceValueStr,
 	p.[WeightStr] as PriceWeightStr,

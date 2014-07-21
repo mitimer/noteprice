@@ -15,7 +15,7 @@ namespace noteprice.Bl.DataModel
     public partial class vwPriceStore
     {
         public int PriceId { get; set; }
-        public Nullable<bool> PriceIsActive { get; set; }
+        public bool PriceIsActive { get; set; }
         public string PriceText { get; set; }
         public string PriceValueStr { get; set; }
         public string PriceWeightStr { get; set; }

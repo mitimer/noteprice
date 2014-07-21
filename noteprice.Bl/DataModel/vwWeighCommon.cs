@@ -12,13 +12,12 @@ namespace noteprice.Bl.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class vwStoreStoreSet
+    public partial class vwWeighCommon
     {
-        public int StoreId { get; set; }
-        public string StoreName { get; set; }
-        public string StoreLocation { get; set; }
-        public Nullable<int> StoreSetId { get; set; }
-        public string StoreSetName { get; set; }
-        public bool StoreIsActive { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Value { get; set; }
+        public bool IsActive { get; set; }
+        public Nullable<int> SortId { get; set; }
     }
 }

@@ -32,7 +32,8 @@
     <div>
         @Html.LabelFor(m => m.WeightStr)
         <div>
-            @Html.TextBoxFor(m => m.WeightStr)
+            @*@Html.TextBoxFor(m => m.WeightStr)*@ 
+            @Html.DropDownListFor(m => m.WeightStr, AppContext.Current.Service.GetWeighCommon().ToList().Select(s => new SelectListItem { Text = s.Name, Value = s.Value.ToString()}).ToList(), "-Select Weight-")
         </div>
     </div>
 

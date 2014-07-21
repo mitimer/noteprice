@@ -22,7 +22,9 @@ namespace noteprice.Bl
 
         public IQueryable<StoreDto> GetStores()
         {
-            return DbContext.vwStoreStoreSets.Select(StoreDto.SelectExpression);
+            return DbContext.vwStoreStoreSets
+				.Where(s=>s.StoreIsActive)
+				.Select(StoreDto.SelectExpression);
         }
 
         public IQueryable<PriceDto> GetPricies(PriceQueryDto query = null)
@@ -78,7 +80,14 @@ namespace noteprice.Bl
             DbContext.SaveChanges();
         }
 
-        private static void PriceParseStrValues(Price price)
+		public IQueryable<WeighCommonDto> GetWeighCommon()
+	    {
+		    return DbContext.vwWeighCommons.Where(w => w.IsActive)
+				.OrderBy(w=>w.SortId).ThenBy(w=>w.Value)
+			    .Select(w => new WeighCommonDto {Name = w.Name, Value = w.Value});
+	    }
+
+	    private static void PriceParseStrValues(Price price)
         {
             decimal priceValue;
             if (decimal.TryParse(price.ValueStr, out priceValue))
@@ -113,7 +122,5 @@ namespace noteprice.Bl
                 this.dbContext = null;
             }
         }
-
-        
     }
 }

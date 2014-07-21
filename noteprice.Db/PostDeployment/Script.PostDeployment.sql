@@ -9,6 +9,6 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+:r .\Populate\003_WeighCommon.sql
 :r .\Populate\001_StoreSet.sql
 :r .\Populate\002_Store.sql

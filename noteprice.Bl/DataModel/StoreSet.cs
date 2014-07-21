@@ -22,6 +22,7 @@ namespace noteprice.Bl.DataModel
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> SortId { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         public virtual ICollection<Store> Stores { get; set; }
     }

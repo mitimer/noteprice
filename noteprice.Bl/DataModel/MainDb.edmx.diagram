@@ -11,12 +11,14 @@
         <EntityTypeShape EntityType="Model.StoreSet" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Goods_GoodsType" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Store_StoreSet" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.vwStoreStoreSet" Width="1.5" PointX="2.375" PointY="6.625" />
         <EntityTypeShape EntityType="Model.Price" Width="1.5" PointX="3.25" PointY="1.375" />
-        <EntityTypeShape EntityType="Model.vwPriceStore" Width="1.5" PointX="0.5" PointY="6.375" />
         <AssociationConnector Association="Model.FK_Price_Goods" />
         <AssociationConnector Association="Model.FK_Price_GoodsType" />
         <AssociationConnector Association="Model.FK_Price_Store" />
+        <EntityTypeShape EntityType="Model.WeighCommon" Width="1.5" PointX="7.75" PointY="4" />
+        <EntityTypeShape EntityType="Model.vwPriceStore" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.vwStoreStoreSet" Width="1.5" PointX="2.625" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.vwWeighCommon" Width="1.5" PointX="4.625" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

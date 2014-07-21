@@ -83,6 +83,9 @@
     <None Include="PostDeployment\Populate\002_Store.sql" />
     <Build Include="dbo\Views\vwStoreStoreSet.sql" />
     <Build Include="dbo\Views\vwPriceStore.sql" />
+    <Build Include="dbo\Tables\WeighCommon.sql" />
+    <None Include="PostDeployment\Populate\003_WeighCommon.sql" />
+    <Build Include="dbo\Views\vwWeighCommon.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
@@ -91,5 +94,6 @@
     <None Include="noteprice.local.publish.publish.xml" />
     <None Include="Local2ProjectCompare.scmp" />
     <None Include="noteprice.azure.publish.publish.xml" />
+    <None Include="azure2ProjectCompare.scmp" />
   </ItemGroup>
 </Project>

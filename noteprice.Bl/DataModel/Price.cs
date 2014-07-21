@@ -25,6 +25,7 @@ namespace noteprice.Bl.DataModel
         public string WeightStr { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime DateCreated { get; set; }
+        public Nullable<bool> IsPromo { get; set; }
     
         public virtual Good Good { get; set; }
         public virtual GoodsType GoodsType { get; set; }
