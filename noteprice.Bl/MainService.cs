@@ -9,7 +9,8 @@ namespace noteprice.Bl
 {
     public class MainService : IDisposable
     {
-        protected MainDB dbContext;
+	    private const int RowsToLoad = 50;
+	    protected MainDB dbContext;
 
         public MainService()
         {
@@ -27,15 +28,15 @@ namespace noteprice.Bl
 				.Select(StoreDto.SelectExpression);
         }
 
-		public IQueryable<PriceDto> GetPricies(string filter="")
-        {
-            return DbContext.vwPriceStores
-				.Where(p=>p.PriceText.Contains(filter))
-				.OrderByDescending(p=>p.PriceDateCreated).ThenBy(p=>p.PriceNormalValue)
-				.Select(PriceDto.SelectException);
-        }
-        
-        public PriceDto GetPrice(int id)
+	    public IQueryable<PriceDto> GetPricies(string filter = "")
+	    {
+		    return DbContext.vwPriceStores
+			    .Where(p => p.PriceText.Contains(filter))
+			    .OrderByDescending(p => p.PriceDateCreated).ThenBy(p => p.PriceNormalValue)
+			    .Select(PriceDto.SelectException).Take(RowsToLoad);
+	    }
+
+	    public PriceDto GetPrice(int id)
         {
             return DbContext.vwPriceStores
                 .Where(p => p.PriceId == id)

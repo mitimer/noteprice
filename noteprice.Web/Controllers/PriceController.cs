@@ -20,6 +20,7 @@ namespace noteprice.Web.Controllers
 		    }
 		    catch (Exception ex)
 		    {
+			 
 		    }
 
 		    var model = AppContext.Service.GetPricies()

@@ -4,11 +4,9 @@
     ViewBag.Title = "Prices";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-    <button id ="add-price-bnt"  onclick="$('#addPrice').show(); $('#search').hide(); $('#search-btn').show(); $('#add-price-bnt').hide();">to add</button>
-    <button id="search-btn" style="display: none"  onclick=" $('#search').show(); $('#addPrice').hide(); $('#search-btn').hide(); $('#add-price-bnt').show(); ">to search</button> 
-</div>
+
 <div id="addPrice" style="display: none" >
+    <button id="search-btn" onclick=" $('#search').show(); $('#addPrice').hide(); ">to search</button> 
     @using (Ajax.BeginForm("CreateAjax", "Price", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
@@ -46,12 +44,13 @@
     }
 </div>
 <div id ="search">
+    <button id="add-price-bnt" onclick="$('#addPrice').show(); $('#search').hide(); ">to add</button>
     @using (Ajax.BeginForm("Search", "Price", new AjaxOptions
-{
-    InsertionMode = InsertionMode.Replace,
-    UpdateTargetId = "priciesList",
-    LoadingElementId = "loader"
-}))
+    {
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "priciesList",
+        LoadingElementId = "loader"
+    }))
     {
         @Html.TextBox("filter")
         <input type="submit" value="Search" />
