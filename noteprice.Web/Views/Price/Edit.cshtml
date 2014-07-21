@@ -4,11 +4,14 @@
 @{
     ViewBag.Title = "Edit Price";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 @using (Html.BeginForm("Edit", "Price", FormMethod.Post, new { role = "form" }))
 {
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div>
+   
+    @Html.HiddenFor(m=>m.StoreId)
+     <div>
         @Html.LabelFor(m => m.StoreIdStr)
         <div>
             @Html.DropDownListFor(m => m.StoreIdStr, AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem { Text = s.StoreName, Value = s.Id.ToString(), Selected = s.Id == Model.StoreId }).ToList())

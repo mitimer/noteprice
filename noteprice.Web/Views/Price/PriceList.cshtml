@@ -3,6 +3,11 @@
 <div id="priciesList">
     @foreach (var p in Model)
     {
-        @Html.Partial("PriceView", p)
+     <fieldset>
+        <legend> <b>@p.Text</b> </legend>
+        <div>@p.StoreName @p.DateCreated.ToString("M") </div>
+        <div><b>@p.Value.ToString("N0")</b>р. <i>@p.WeightStr</i> </div>
+        <div>@Html.ActionLink("Edit", "Edit", new { p.Id })</div>
+    </fieldset>
     }
 </div>
