@@ -8,9 +8,9 @@ namespace noteprice.Web.Models
 
 	public enum PriceEditMode
 	{
-		Create,
-		Update,
-		MakeCopy
+		Create=0,
+		Update=1,
+		MakeCopy=2
 	}
 
 	public class PriceModel

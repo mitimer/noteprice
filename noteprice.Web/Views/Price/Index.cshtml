@@ -1,11 +1,51 @@
-﻿@model IEnumerable<noteprice.Web.Models.PricieViewModel>
+﻿@using noteprice.Web.Classes
+@model IEnumerable<noteprice.Web.Models.PricieViewModel>
 @{
     ViewBag.Title = "Prices";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.ActionLink("Add Price", "Create")
-<br/>
 <div>
+    <button id ="add-price-bnt"  onclick="$('#addPrice').show(); $('#search').hide(); $('#search-btn').show(); $('#add-price-bnt').hide();">to add</button>
+    <button id="search-btn" style="display: none"  onclick=" $('#search').show(); $('#addPrice').hide(); $('#search-btn').hide(); $('#add-price-bnt').show(); ">to search</button> 
+</div>
+<div id="addPrice" style="display: none" >
+    @using (Ajax.BeginForm("CreateAjax", "Price", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "priciesList",
+        LoadingElementId = "loader"
+    }))
+    {
+        <div>
+            @Html.Label("Store")
+            <div>
+                @Html.DropDownList("StoreIdStr", AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem { Text = s.StoreName, Value = s.Id.ToString() }).ToList())
+            </div>
+        </div>
+        <div>
+            @Html.Label("Text")
+            <div>
+                @Html.TextBox("Text")
+            </div>
+        </div>
+
+        <div>
+            @Html.Label("Value")
+            <div>
+                @Html.TextBox("ValueStr")
+            </div>
+        </div>
+        <div>
+            @Html.Label("Weight")
+            <div>
+                @Html.TextBox("WeightStr")
+            </div>
+        </div>
+
+        <input type="submit" value="Add" />
+    }
+</div>
+<div id ="search">
     @using (Ajax.BeginForm("Search", "Price", new AjaxOptions
 {
     InsertionMode = InsertionMode.Replace,

@@ -11,7 +11,23 @@ namespace noteprice.Web.Controllers
     public class PriceController : BaseController
     {
 
-		// GET: Price/Search/
+	    public PartialViewResult CreateAjax(PriceModel priceModel)
+	    {
+		    try
+		    {
+			    PriceDto priceDto = priceModel.GetDto();
+			    AppContext.Service.CreatePrice(priceDto);
+		    }
+		    catch (Exception ex)
+		    {
+		    }
+
+		    var model = AppContext.Service.GetPricies()
+			    .Select(PricieViewModel.SelectException);
+		    return PartialView("PriceList", model);
+	    }
+
+	    // GET: Price/Search/
 		public PartialViewResult Search(string filter)
 		{
 			filter = filter.ToLower();
