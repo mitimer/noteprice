@@ -27,9 +27,12 @@ namespace noteprice.Bl
 				.Select(StoreDto.SelectExpression);
         }
 
-        public IQueryable<PriceDto> GetPricies(PriceQueryDto query = null)
+		public IQueryable<PriceDto> GetPricies(string filter="")
         {
-            return DbContext.vwPriceStores.Select(PriceDto.SelectException);
+            return DbContext.vwPriceStores
+				.Where(p=>p.PriceText.Contains(filter))
+				.OrderByDescending(p=>p.PriceDateCreated).ThenBy(p=>p.PriceNormalValue)
+				.Select(PriceDto.SelectException);
         }
         
         public PriceDto GetPrice(int id)

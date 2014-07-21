@@ -2,6 +2,6 @@
 <fieldset>
         <legend> <b>@Model.Text</b> </legend>
         <div>@Model.StoreName @Model.DateCreated.ToString("M") </div>
-        <div><b>@Model.Value.ToString("N0")</b>р. <i>@Model.WeightStr</i> </div>
+        <div><b>@Model.Value.ToString("N0")</b>р. <i>@Model.WeightStr</i>  <b>[@Model.NormalValue.Value.ToString("N0")]</b></div>
         <div>@Html.ActionLink("Edit", "Edit", new { Model.Id })</div>
     </fieldset>

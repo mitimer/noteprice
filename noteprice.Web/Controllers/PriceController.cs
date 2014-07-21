@@ -15,7 +15,8 @@ namespace noteprice.Web.Controllers
 		public PartialViewResult Search(string filter)
 		{
 			filter = filter.ToLower();
-			var model = AppContext.Service.GetPricies().Where(p => p.Text.ToLower().Contains(filter)).Select(PricieViewModel.SelectException);
+			var model = AppContext.Service.GetPricies(filter)
+				.Select(PricieViewModel.SelectException);
 			return PartialView("PriceList", model);
 		}
 

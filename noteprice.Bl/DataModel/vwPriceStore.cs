@@ -22,6 +22,8 @@ namespace noteprice.Bl.DataModel
         public System.DateTime PriceDateCreated { get; set; }
         public Nullable<decimal> PriceValue { get; set; }
         public Nullable<decimal> PriceWeight { get; set; }
+        public Nullable<decimal> PriceNormalValue { get; set; }
+        public Nullable<bool> PriceIsPromo { get; set; }
         public Nullable<int> StoreId { get; set; }
         public string StoreName { get; set; }
         public string StroeLocation { get; set; }

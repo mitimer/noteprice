@@ -31,8 +31,8 @@ namespace noteprice.Bl.DataModel
         public virtual DbSet<StoreSet> StoreSets { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<WeighCommon> WeighCommons { get; set; }
-        public virtual DbSet<vwPriceStore> vwPriceStores { get; set; }
         public virtual DbSet<vwStoreStoreSet> vwStoreStoreSets { get; set; }
         public virtual DbSet<vwWeighCommon> vwWeighCommons { get; set; }
+        public virtual DbSet<vwPriceStore> vwPriceStores { get; set; }
     }
 }

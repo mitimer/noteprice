@@ -12,6 +12,7 @@ namespace noteprice.Bl.Dto
         public string ValueStr { get; set; }
         public string WeightStr { get; set; }
         public decimal Value { get; set; }
+		public decimal? NormalValue { get; set; }
         public decimal? Weight { get; set; }
         public DateTime DateCreated { get; set; }
         
@@ -23,6 +24,7 @@ namespace noteprice.Bl.Dto
         
         public int? GoodsTypeId { get; set; }
         public int? GoodsId { get; set; }
+		public bool? IsPromo { get; set; }
 
         public static Expression<Func<vwPriceStore,PriceDto>> SelectException = o=> new PriceDto
         {
@@ -39,7 +41,8 @@ namespace noteprice.Bl.Dto
             StroeLocation = o.StroeLocation,
             StoreSetId = o.StoreSetId,
             StoreSetName = o.StoreSetName,
-            
+			NormalValue = o.PriceNormalValue,
+            IsPromo = o.PriceIsPromo
         };
     }
 }

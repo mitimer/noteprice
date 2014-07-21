@@ -13,6 +13,7 @@ namespace noteprice.Web.Models
 		public decimal Value { get; set; }
 		public string WeightStr { get; set; }
 		public DateTime DateCreated { get; set; }
+		public decimal? NormalValue { get; set; }
 
 		public static Expression<Func<PriceDto, PricieViewModel>> SelectException = o => new PricieViewModel
 		{
@@ -22,6 +23,7 @@ namespace noteprice.Web.Models
 			Value = o.Value,
 			DateCreated = o.DateCreated,
 			StoreName = o.StoreName,
+			NormalValue = o.NormalValue,
 		};
 	}
 }
