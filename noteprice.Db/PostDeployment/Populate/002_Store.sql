@@ -20,7 +20,8 @@ values
 (7, 'SPAR','Arsenal',4,0),
 (101, 'TBOY-DOKTOR','',101,1),
 (102, 'LADUSHKA','',102,1),
-(103, 'SPAR-APTEKA','',103,1)
+(103, 'SPAR-APTEKA','',103,1),
+(1000, 'Indie','',1000,1)
 
 merge into [dbo].[Store] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]

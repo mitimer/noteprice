@@ -15,7 +15,8 @@ values
 (4, 'SPAR',1),
 (101, 'TBOY-DOKTOR',1),
 (102, 'LADUSHKA',1),
-(103, 'SPAR-APTEKA',1)
+(103, 'SPAR-APTEKA',1),
+(1000, 'Indie',1)
 
 merge into [dbo].[StoreSet] as [target]
 using @t as [source] on [target].[Id] = [source].[Id]
