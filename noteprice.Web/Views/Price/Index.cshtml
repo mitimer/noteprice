@@ -6,12 +6,14 @@
 }
 
 <div id="addPrice" style="display: none" >
-    <button id="search-btn" onclick=" $('#search').show(); $('#addPrice').hide(); ">to search</button> 
+    
     @using (Ajax.BeginForm("CreateAjax", "Price", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "priciesList",
-        LoadingElementId = "loader"
+        LoadingElementId = "loader",
+        OnSuccess = "onSuccessPriceAdd",
+        OnFailure = "onFailureQuery"
     }))
     {
         <div>
@@ -23,41 +25,47 @@
         <div>
             @Html.Label("Text")
             <div>
-                @Html.TextBox("Text")
+                @Html.TextBox("Text", "", new { autocomplete = "off", @class = "text-box-str" })
             </div>
         </div>
-
-        <div>
-            @Html.Label("Value")
-            <div>
-                @Html.TextBox("ValueStr")
+        <div style="float:left; width: 100%" >
+            <div style="float:left; width: 100px">
+                @Html.Label("Value")
+                <div>
+                    @Html.TextBox("ValueStr", "", new { type = "number", autocomplete = "off", @class = "text-box-num" })
+                </div>
+            </div>    
+            <div style="float:left; width: 100px; margin-left: 3px">
+                @Html.Label("Weight")
+                <div>
+                    @Html.TextBox("WeightStr", "", new { type = "number", autocomplete = "off", @class="text-box-num" })
+                </div>
             </div>
         </div>
-        <div>
-            @Html.Label("Weight")
-            <div>
-                @Html.TextBox("WeightStr")
-            </div>
-        </div>
-
-        <input type="submit" value="Add" />
+        <div style="float: right; width: 100%"><input type="submit" value="Add" /> </div>
+     
     }
+    <button id="search-btn" onclick=" toSearch();">to search</button>
 </div>
 <div id ="search">
-    <button id="add-price-bnt" onclick="$('#addPrice').show(); $('#search').hide(); ">to add</button>
+    
     @using (Ajax.BeginForm("Search", "Price", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "priciesList",
-        LoadingElementId = "loader"
+        LoadingElementId = "loader",
+        OnFailure = "onFailureQuery"
+        
     }))
     {
         @Html.TextBox("filter")
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search" /> 
     }
+    <button id="add-price-bnt" onclick="toAdd();">to add</button>
+
 </div>
 <div id="loader" class=" aletr" style="display:none">
-    Loading...<img src="~/Content/Images/ajax-loader.gif" />
+    <img src="~/Content/Images/ajax-loader.gif" />
 </div>
 
 @Html.Partial("PriceList")

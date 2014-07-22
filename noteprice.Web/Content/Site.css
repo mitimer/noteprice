@@ -1,7 +1,14 @@
-﻿input,
+﻿.text-box-num {
+    width: 90px
+}
+
+.text-box-str {
+    width: 100%
+}
+
+input,
 select {
-    margin-bottom: 2px;
-    width: 100%;
+    margin-bottom: 1px;
 }
 
 /* styles for validation helpers */

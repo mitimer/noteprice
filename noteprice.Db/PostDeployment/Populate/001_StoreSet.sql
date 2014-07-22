@@ -13,6 +13,7 @@ values
 (2, 'MAGNIT',1),
 (3, 'Pyterochka',1),
 (4, 'SPAR',1),
+(5, 'BILLA',1),
 (101, 'TBOY-DOKTOR',1),
 (102, 'LADUSHKA',1),
 (103, 'SPAR-APTEKA',1),

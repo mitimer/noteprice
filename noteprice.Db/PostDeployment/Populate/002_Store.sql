@@ -18,6 +18,7 @@ values
 (5, 'SPAR','Frunze',4,0),
 (6, 'Pyterochka','Budennogo',3,0),
 (7, 'SPAR','Arsenal',4,0),
+(5, 'BILLA','Leytesina',1,1),
 (101, 'TBOY-DOKTOR','',101,1),
 (102, 'LADUSHKA','',102,1),
 (103, 'SPAR-APTEKA','',103,1),
