@@ -88,11 +88,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\ajax-loader.gif" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\dev-noteprice.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -103,6 +114,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\price.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -110,14 +122,18 @@
     <Content Include="Views\Stores\Index.cshtml" />
     <Content Include="Views\Price\PriceList.cshtml" />
     <Content Include="Views\Price\PriceView.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\AppContext.cs" />
     <Compile Include="Classes\Log.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\PriceController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +153,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Goods\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\noteprice.Bl\noteprice.Bl.csproj">

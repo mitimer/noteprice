@@ -1,4 +1,15 @@
-﻿.text-box-num {
+﻿body {
+    padding-top: 55px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.text-box-num {
     width: 90px
 }
 
