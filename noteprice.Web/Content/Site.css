@@ -1,4 +1,8 @@
-﻿body {
+﻿.navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    color: #ffffff !important;
+}
+
+body {
     padding-top: 55px;
     padding-bottom: 20px;
 }
