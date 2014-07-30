@@ -58,7 +58,7 @@
         
     }))
     {
-        @Html.TextBox("filter")
+        @Html.TextBox("filter", "", new { autocomplete = "off"})
         <input type="submit" value="Search" /> 
     }
     <button id="add-price-bnt" onclick="toAdd();">to add</button>

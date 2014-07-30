@@ -1,4 +1,84 @@
-﻿.navbar-brand, .navbar-inverse .navbar-nav > li > a {
+﻿.price-date,.price-weight,.price-value {
+    padding-left: 5px;
+    float: left;
+}
+
+.price-date {
+    padding-right: 10px;
+}
+
+.price-date
+ {
+    font-style: italic;    
+}
+
+p {
+    margin: 0 0 0 !important;
+}
+
+.price-div {
+    border-top-style: none;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+.price-div {
+    border-width: 1px;
+    border-color: #efefef;
+}
+
+.price-div {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 10px;
+}
+
+.price-weight {
+    padding-top: 3px; 
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.price-action {
+    padding-right: 10px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.price-normvalue {
+    float: right;
+}
+
+.price-title-div,.price-div  {
+    width: 100%;
+    float: left;
+}
+
+.price-info-div {
+    width: 50%;
+    float: left;
+}
+
+.price-titel {
+     font-weight: bold;
+    font-size: 16px;
+}
+
+.price-titel,.price-normvalue {
+    background: none repeat scroll 0 0 #ebe7e8;
+}
+
+.price-store {
+    float: right;
+}
+.price-normvalue, .price-store {
+     font-weight: bold;
+    font-size: 14px;
+}
+
+
+.navbar-brand, .navbar-inverse .navbar-nav > li > a {
     color: #ffffff !important;
 }
 

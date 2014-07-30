@@ -6,42 +6,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     
 }
-@using (Html.BeginForm("Edit", "Price", FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm("Edit", "Price", FormMethod.Post, new {role = "form"}))
 {
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-   
-    @Html.HiddenFor(m=>m.StoreId)
-     <div>
+    @Html.ValidationSummary("", new {@class = "text-danger"})
+
+    @Html.HiddenFor(m => m.StoreId)
+    <div>
         @Html.LabelFor(m => m.StoreIdStr)
         <div>
-            @Html.DropDownListFor(m => m.StoreIdStr, AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem { Text = s.StoreName, Value = s.Id.ToString(), Selected = s.Id == Model.StoreId }).ToList())
+            @Html.DropDownListFor(m => m.StoreIdStr, AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem {Text = s.StoreName, Value = s.Id.ToString(), Selected = s.Id == Model.StoreId}).ToList())
         </div>
     </div>
     <div>
         @Html.LabelFor(m => m.Text)
         <div>
-            @Html.TextBoxFor(m => m.Text)
+            @Html.TextBoxFor(m => m.Text, new {autocomplete = "off", @class = "text-box-str"})
         </div>
     </div>
-    <div>
-        @Html.LabelFor(m => m.ValueStr)
-        <div>
-            @Html.TextBoxFor(m => m.ValueStr)
+    <div style="float: left; width: 100%">
+        <div style="float: left; width: 100px">
+            @Html.LabelFor(m => m.ValueStr)
+            <div>
+                @Html.TextBoxFor(m => m.ValueStr, new {type = "number", autocomplete = "off", @class = "text-box-num"})
+            </div>
+        </div>
+        <div style="float: left; width: 100px; margin-left: 3px">
+            @Html.LabelFor(m => m.WeightStr)
+            <div>
+                @Html.TextBoxFor(m => m.WeightStr, new {type = "number", autocomplete = "off", @class = "text-box-num"})
+            </div>
         </div>
     </div>
-    <div>
-        @Html.LabelFor(m => m.WeightStr)
-        <div>
-            @Html.TextBoxFor(m => m.WeightStr)
-        </div>
-    </div>
-
     <div>
         <div>
             <input type="submit" value="Save" />
         </div>
     </div>
-    
-    @Html.HiddenFor(m=>m.Id)
+
+    @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.EditMode)
 }

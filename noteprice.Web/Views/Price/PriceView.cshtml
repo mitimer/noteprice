@@ -1,12 +1,22 @@
 ﻿@model noteprice.Web.Models.PricieViewModel
-<fieldset>
-        <legend> <b>@Model.Text</b> </legend>
-    <div style="width: 60%; float:left">
-        <div> @Model.DateCreated.ToString("M") </div>
-        <div>@Model.Value.ToString("N0")р. <i>@Model.WeightStr</i>  </div>
-        <div>@Html.ActionLink("Edit", "Edit", new { Model.Id }) @Html.ActionLink("Make a copy", "MakeCopy", new { Model.Id })</div>
+<div class="price-div">
+    <div class="price-title-div">
+        <p class="price-titel">@Model.Text</p>
     </div>
-    <div style="float:right" > <div>@Model.StoreName</div>
-    <div><b style="float: right">@Model.NormalValue.Value.ToString("N0")</b></div> 
+    <div class="price-info-div">
+        <div style="float: left; width: 100%">
+            <p class="price-value">@Model.Value.ToString("N0")р.</p>  
+            <p class="price-weight">@Model.WeightStr</p> 
+            </div>
+        <div style="float: left; width: 100%">
+            @Html.ActionLink("Edit", "Edit", new { Model.Id }, new { @class = "price-action" })
+            @Html.ActionLink("Make a copy", "MakeCopy", new { Model.Id }, new { @class = "price-action" })
+        </div>
     </div>
-    </fieldset>
+    <div style="float:right">
+        <div>
+            <p class="price-date">@Model.DateCreated.ToString("M")</p> <p class="price-store"> @Model.StoreName<p>
+        </div>
+        <p class="price-normvalue">@Model.NormalValue.Value.ToString("N0")</p>
+    </div>
+</div>
