@@ -1,4 +1,21 @@
-﻿.price-date,.price-weight,.price-value {
+﻿.price-add-btn {
+    float: right;
+    padding-top: 15px;
+}
+
+.navbar-search {
+    padding: 10px;
+}
+
+.store-label {
+    width: 50px;
+}
+
+.text-box-str {
+    width: 230px
+}
+
+.price-date,.price-weight,.price-value {
     padding-left: 5px;
     float: left;
 }
@@ -15,17 +32,15 @@
 p {
     margin: 0 0 0 !important;
 }
-
-.price-div {
-    border-top-style: none;
-    border-bottom-style: solid;
-    border-right-style: solid;
-    border-left-style: solid;
+.price-add-div {
+    background: none repeat scroll 0 0 #ebe7e8;
 }
 
 .price-div {
     border-width: 1px;
     border-color: #efefef;
+    border-radius: 7px;
+    border-style: solid;
 }
 
 .price-div {
@@ -97,9 +112,6 @@ body {
     width: 90px
 }
 
-.text-box-str {
-    width: 100%
-}
 
 input,
 select {

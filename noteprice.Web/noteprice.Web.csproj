@@ -124,6 +124,7 @@
     <Content Include="Views\Price\PriceView.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
