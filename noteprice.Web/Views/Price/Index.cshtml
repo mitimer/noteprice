@@ -55,7 +55,7 @@
     {
         <div style="float: left; width: 100%" class="price-add-div">
             @Html.Label("Store", new {@class = "store-label"})
-            @Html.DropDownList("StoreIdStr", AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem {Text = s.StoreName, Value = s.Id.ToString()}).ToList())
+            @Html.DropDownList("StoreIdStr", AppContext.Current.Service.GetStores().ToList().Select(s => new SelectListItem {Text = s.StoreName, Value = s.Id.ToString()}).ToList(),new{style="float: right"})
         </div>
         <div style="float: left; width: 100%" class="price-add-div">
             @Html.Label("Text", new {@class = "store-label"})
